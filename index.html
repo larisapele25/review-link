@@ -1,22 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting to PrivéTable</title>
-    <script>
-      const query = window.location.search;
-      window.location.href = "privetable://review" + query;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting to PrivéTable...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const reservationId = params.get("reservationId");
+      const userId = params.get("userId");
+      const restaurantId = params.get("restaurantId");
 
+      const deepLink = `privetable://review?reservationId=${reservationId}&userId=${userId}&restaurantId=${restaurantId}`;
+
+      // Redirecționează către aplicație
+      window.location.href = deepLink;
+
+      // Dacă aplicația nu se deschide în 2s, arată un fallback
       setTimeout(() => {
         document.getElementById("fallback").style.display = "block";
-      }, 3000);
-    </script>
-  </head>
-  <body>
-    <p>Redirecting to PrivéTable app...</p>
-    <p id="fallback" style="display: none;">
-      Dacă aplicația nu se deschide automat,<br />
-      deschide manual link-ul: <strong>privetable://review</strong>
-    </p>
-  </body>
+      }, 2000);
+    };
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    #fallback {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Deschidem aplicația PrivéTable...</h2>
+  <div id="fallback">
+    <p>Nu se deschide aplicația?</p>
+    <p>Asigură-te că ai <strong>PrivéTable</strong> instalată pe telefon.</p>
+  </div>
+</body>
 </html>
