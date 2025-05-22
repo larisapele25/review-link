@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting to PrivéTable</title>
+    <script>
+      const query = window.location.search;
+      window.location.href = "privetable://review" + query;
+
+      setTimeout(() => {
+        document.getElementById("fallback").style.display = "block";
+      }, 3000);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to PrivéTable app...</p>
+    <p id="fallback" style="display: none;">
+      Dacă aplicația nu se deschide automat,<br />
+      deschide manual link-ul: <strong>privetable://review</strong>
+    </p>
+  </body>
+</html>
